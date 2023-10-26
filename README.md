@@ -1,4 +1,4 @@
-<h1>BloggieMVC - Blog Site</h1>
+<h1>MS.BlogMVC - Blog Site</h1>
 
 <img src="/readme-images/home.png" />
 
@@ -37,7 +37,7 @@ To run the project locally, follow these steps:
 
 1. Clone the repository:
 
-    `git clone https://github.com/yosikari/BloggieMVC.git`
+    `git clone https://github.com/yosikari/MS.BlogMVC.git`
 
 2. Set up the database:
    - Create two databases, one for users and one for blog posts.
