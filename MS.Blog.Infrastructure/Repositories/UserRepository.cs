@@ -7,18 +7,18 @@ namespace MS.Blog.Web.Repositories
 {
 	public class UserRepository : IUserRepository
 	{
-		private readonly AuthDbContext authDbContext;
+		private readonly MSBlogDbContext dbContext;
 
-		public UserRepository(AuthDbContext authDbContext)
+		public UserRepository(MSBlogDbContext dbContext)
 		{
-			this.authDbContext = authDbContext;
+			this.dbContext = dbContext;
 		}
 
 		public async Task<IEnumerable<IdentityUser>> GetAll()
 		{
-			var users = await authDbContext.Users.ToListAsync();
+			var users = await dbContext.Users.ToListAsync();
 			// Remove superAdmin from users list
-			var superAdminUser = await authDbContext.Users
+			var superAdminUser = await dbContext.Users
 				.FirstOrDefaultAsync(x => x.Email == "superadmin@msBlog.com");
 			if (superAdminUser is not null)
 			{

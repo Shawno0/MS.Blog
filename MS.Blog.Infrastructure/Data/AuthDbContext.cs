@@ -14,7 +14,7 @@ namespace MS.Blog.Infrastructure.Data
 		{
 			base.OnModelCreating(builder);
 
-			// Seed roles (User,Admin,SuperAdmin)
+			// Seed roles (User,Admin,SuperAdmin) 
 			var adminRoleId = "32ca9872-382a-4bd6-a6e6-ca39739e3e1b";
 			var superAdminRoleId = "92507cae-b1c3-4e8d-b8d9-d931ab192237";
 			var userRoleId = "3b19458e-6b95-4358-8c65-d9573a27fe9b";
