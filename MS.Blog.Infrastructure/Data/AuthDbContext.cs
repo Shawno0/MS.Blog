@@ -6,7 +6,7 @@ namespace MS.Blog.Infrastructure.Data
 {
 	public class AuthDbContext : IdentityDbContext
 	{
-		public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
+		public AuthDbContext(DbContextOptions<MSBlogDbContext> options) : base(options)
 		{
 		}
 

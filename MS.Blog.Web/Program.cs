@@ -1,41 +1,10 @@
-using MS.Blog.Web.Repositories;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using MS.Blog.Infrastructure.Data;
-using MS.Blog.Domain.Abstract.Repositories;
-using MS.Blog.Infrastructure.Repositories;
+using MS.Blog.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<MSBlogDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddDbContext<AuthDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-	.AddEntityFrameworkStores<AuthDbContext>();
-
-builder.Services.Configure<IdentityOptions>(options =>
-{
-	//Default settings
-	options.Password.RequireDigit = true;
-	options.Password.RequireLowercase = true;
-	options.Password.RequireNonAlphanumeric = true;
-	options.Password.RequireUppercase = true;
-	options.Password.RequiredLength = 6;
-	options.Password.RequiredUniqueChars = 1;
-});
-
-builder.Services.AddScoped<ITagRepository, TagRepository>();
-builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
-//builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();
-builder.Services.AddScoped<IBlogPostLikeRepository, BlogPostLikeRepository>();
-builder.Services.AddScoped<IBlogPostCommentRepository, BlogPostCommentRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

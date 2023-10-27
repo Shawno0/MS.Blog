@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MS.Blog.Infrastructure.Data
 {
-    public class MSBlogDbContext : DbContext
+    public class MSBlogDbContext : AuthDbContext
     {
         public MSBlogDbContext(DbContextOptions<MSBlogDbContext> options) : base(options)
         {
