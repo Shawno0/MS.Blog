@@ -14,23 +14,23 @@ namespace MS.Blog.Infrastructure.Repositories
 			this.msBlogDbContext = msBlogDbContext;
 		}
 
-		public async Task<BlogPostLike> AddLikeForBlog(BlogPostLike blogPostLike)
+		public async Task<Like> AddLikeForBlog(Like blogPostLike)
 		{
 			await msBlogDbContext.BlogPostLike.AddAsync(blogPostLike);
 			await msBlogDbContext.SaveChangesAsync();
 			return blogPostLike;
 		}
 
-		public async Task<IEnumerable<BlogPostLike>> GetLikesForBlog(Guid blogPostId)
+		public async Task<IEnumerable<Like>> GetLikesForBlog(Guid blogPostId)
 		{
-			return await msBlogDbContext.BlogPostLike.Where(x => x.BlogPostId == blogPostId)
+			return await msBlogDbContext.BlogPostLike.Where(x => x.PostId == blogPostId)
 				.ToListAsync();
 		}
 
 		public async Task<int> GetTotalLikes(Guid blogPostId)
 		{
 			return await msBlogDbContext.BlogPostLike
-				.CountAsync(x => x.BlogPostId == blogPostId);
+				.CountAsync(x => x.PostId == blogPostId);
 		}
 	}
 }

@@ -4,8 +4,8 @@ namespace MS.Blog.Domain.Abstract.Repositories
 {
 	public interface IBlogPostCommentRepository
 	{
-		Task<BlogPostComment> AddAsync(BlogPostComment blogPostComment);
+		Task<Comment> AddAsync(Comment blogPostComment);
 
-		Task<IEnumerable<BlogPostComment>> GetCommentsByBlogIdAsync(Guid blogPostId);
+		Task<IEnumerable<Comment>> GetCommentsByBlogIdAsync(Guid blogPostId);
 	}
 }

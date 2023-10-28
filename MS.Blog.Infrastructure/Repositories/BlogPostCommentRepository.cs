@@ -13,16 +13,16 @@ namespace MS.Blog.Infrastructure.Repositories
 		{
 			this.msBlogDbContext = msBlogDbContext;
 		}
-		public async Task<BlogPostComment> AddAsync(BlogPostComment blogPostComment)
+		public async Task<Comment> AddAsync(Comment blogPostComment)
 		{
 			await msBlogDbContext.BlogPostComment.AddAsync(blogPostComment);
 			await msBlogDbContext.SaveChangesAsync();
 			return blogPostComment;
 		}
 
-		public async Task<IEnumerable<BlogPostComment>> GetCommentsByBlogIdAsync(Guid blogPostId)
+		public async Task<IEnumerable<Comment>> GetCommentsByBlogIdAsync(Guid blogPostId)
 		{
-			return await msBlogDbContext.BlogPostComment.Where(x => x.BlogPostId == blogPostId)
+			return await msBlogDbContext.BlogPostComment.Where(x => x.PostId == blogPostId)
 				.ToListAsync();
 		}
 	}

@@ -21,9 +21,9 @@ namespace MS.Blog.Web.Controllers
 		[Route("Add")]
 		public async Task<IActionResult> AddLike([FromBody] AddLikeRequest addLikeRequest)
 		{
-			var model = new BlogPostLike
+			var model = new Like
 			{
-				BlogPostId = addLikeRequest.BlogPostId,
+				PostId = addLikeRequest.BlogPostId,
 				UserId = addLikeRequest.UserId
 			};
 			await blogPostLikeRepository.AddLikeForBlog(model);

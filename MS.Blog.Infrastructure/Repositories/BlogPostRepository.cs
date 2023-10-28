@@ -14,14 +14,14 @@ namespace MS.Blog.Infrastructure.Repositories
 			this.msBlogDbContext = msBlogDbContext;
 		}
 
-		public async Task<BlogPost> AddAsync(BlogPost blogPost)
+		public async Task<Post> AddAsync(Post blogPost)
 		{
 			await msBlogDbContext.AddAsync(blogPost);
 			await msBlogDbContext.SaveChangesAsync();
 			return blogPost;
 		}
 
-		public async Task<BlogPost?> DeleteAsync(Guid id)
+		public async Task<Post?> DeleteAsync(Guid id)
 		{
 			var existingBlog = await msBlogDbContext.BlogPosts.FindAsync(id);
 			if (existingBlog != null)
@@ -33,23 +33,23 @@ namespace MS.Blog.Infrastructure.Repositories
 			return null;
 		}
 
-		public async Task<IEnumerable<BlogPost>> GetAllAsync()
+		public async Task<IEnumerable<Post>> GetAllAsync()
 		{
 			return await msBlogDbContext.BlogPosts.Include(x => x.Tags).ToListAsync();
 		}
 
-		public async Task<BlogPost?> GetAsync(Guid id)
+		public async Task<Post?> GetAsync(Guid id)
 		{
 			return await msBlogDbContext.BlogPosts.Include(x => x.Tags).FirstOrDefaultAsync(x => x.Id == id);
 		}
 
-		public async Task<BlogPost?> GetByUrlHandleAsync(string urlHandle)
+		public async Task<Post?> GetByUrlHandleAsync(string urlHandle)
 		{
 			return await msBlogDbContext.BlogPosts.Include(x => x.Tags)
 				.FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
 		}
 
-		public async Task<BlogPost?> UpdateAsync(BlogPost blogPost)
+		public async Task<Post?> UpdateAsync(Post blogPost)
 		{
 			var existingBlog = await msBlogDbContext.BlogPosts.Include(x => x.Tags)
 				.FirstOrDefaultAsync(x => x.Id == blogPost.Id);

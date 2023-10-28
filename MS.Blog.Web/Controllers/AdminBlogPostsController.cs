@@ -7,7 +7,6 @@ using MS.Blog.Domain.ViewModels;
 
 namespace MS.Blog.Web.Controllers
 {
-	[Authorize(Roles = "Admin")]
 	public class AdminBlogPostsController : Controller
 	{
 		private readonly ITagRepository tagRepository;
@@ -37,7 +36,7 @@ namespace MS.Blog.Web.Controllers
 		public async Task<IActionResult> Add(AddBlogPostRequest addBlogPostRequest)
 		{
 			// Map view model to domain model
-			var blogPost = new BlogPost
+			var blogPost = new Post
 			{
 				Heading = addBlogPostRequest.Heading,
 				PageTitle = addBlogPostRequest.PageTitle,
@@ -121,7 +120,7 @@ namespace MS.Blog.Web.Controllers
 		public async Task<IActionResult> Edit(EditBlogPostRequest editBlogPostRequest)
 		{
 			// Map view model back to domain model
-			var blogPostDomainModel = new BlogPost
+			var blogPostDomainModel = new Post
 			{
 				Id = editBlogPostRequest.Id,
 				Heading = editBlogPostRequest.Heading,
@@ -165,6 +164,7 @@ namespace MS.Blog.Web.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> Delete(EditBlogPostRequest editBlogPostRequest)
 		{
 			// Call repository to delete this blog post and tags

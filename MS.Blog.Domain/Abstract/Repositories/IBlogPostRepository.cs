@@ -4,17 +4,17 @@ namespace MS.Blog.Domain.Abstract.Repositories
 {
 	public interface IBlogPostRepository
 	{
-		Task<IEnumerable<BlogPost>> GetAllAsync();
+		Task<IEnumerable<Post>> GetAllAsync();
 
-		Task<BlogPost?> GetAsync(Guid id);
+		Task<Post?> GetAsync(Guid id);
 
-		Task<BlogPost?> GetByUrlHandleAsync(string urlHandle);
+		Task<Post?> GetByUrlHandleAsync(string urlHandle);
 
-		Task<BlogPost> AddAsync(BlogPost blogPost);
+		Task<Post> AddAsync(Post blogPost);
 
-		Task<BlogPost?> UpdateAsync(BlogPost blogPost);
+		Task<Post?> UpdateAsync(Post blogPost);
 
-		Task<BlogPost?> DeleteAsync(Guid id);
+		Task<Post?> DeleteAsync(Guid id);
 
 	}
 }

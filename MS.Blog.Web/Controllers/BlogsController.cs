@@ -94,9 +94,9 @@ namespace MS.Blog.Web.Controllers
 		{
 			if (signInManager.IsSignedIn(User))
 			{
-				var domainModel = new BlogPostComment
+				var domainModel = new Comment
 				{
-					BlogPostId = blogDetailsViewModel.Id,
+					PostId = blogDetailsViewModel.Id,
 					Description = blogDetailsViewModel.CommentDescription,
 					UserId = Guid.Parse(userManager.GetUserId(User)),
 					DateAdded = DateTime.Now
