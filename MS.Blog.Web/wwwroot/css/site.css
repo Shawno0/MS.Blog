@@ -1,5 +1,5 @@
 :root {
-    --border-radius: 0.5rem;
+    --border-radius: 1rem;
     --millie-pink: #F7D1EA;
 }
 
@@ -47,22 +47,37 @@ body > footer {
 
 header,
 footer {
-    background-color: #EDD2E0;
+    background-color: var(--millie-pink);
 }
 
 main {
-    background-color: #888888;
+
 }
 
 .hero {
     background-color: #87B18F;
     border-radius: var(--border-radius);
+    overflow: hidden;
+
+    --bs-gutter-x: 0;
 }
 
 .post-container {
+    width: 100%;
     border-radius: var(--border-radius);
+    background-color: var(--millie-pink);
+    color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .blog-details-content img {
     max-width: 100%;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(calc(50% - 2rem), 25rem), 1fr));
+    gap: 2rem;
+    overflow: hidden;
 }
