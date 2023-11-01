@@ -29,10 +29,10 @@ namespace MS.Blog.Web.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Index(string urlHandle)
+		public async Task<IActionResult> Index(Guid id)
 		{
 			var isLiked = false;
-			var blogPost = await blogPostRepository.GetByUrlHandleAsync(urlHandle);
+			var blogPost = await blogPostRepository.GetAsync(id);
 			var blogDetailsViewModel = new BlogDetailsViewModel();
 
 

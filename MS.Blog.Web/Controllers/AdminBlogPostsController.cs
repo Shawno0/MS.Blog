@@ -45,7 +45,7 @@ namespace MS.Blog.Web.Controllers
 				FeaturedImageUrl = addBlogPostRequest.FeaturedImageUrl,
 				UrlHandle = addBlogPostRequest.UrlHandle,
 				PublishedDate = addBlogPostRequest.PublishedDate,
-				Author = addBlogPostRequest.Author,
+				Author = User.Identity?.Name ?? "Unknown",
 				Visible = addBlogPostRequest.Visible,
 			};
 
