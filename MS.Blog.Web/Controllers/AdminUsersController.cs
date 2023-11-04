@@ -32,7 +32,8 @@ namespace MS.Blog.Web.Controllers
 				{
 					Id = Guid.Parse(user.Id),
 					Username = user.UserName,
-					EmailAddress = user.Email
+					EmailAddress = user.Email,
+					EmailConfirmed = user.EmailConfirmed
 				});
 			}
 
@@ -45,7 +46,8 @@ namespace MS.Blog.Web.Controllers
 			var identityUser = new IdentityUser
 			{
 				UserName = request.Username,
-				Email = request.Email
+				Email = request.Email,
+				EmailConfirmed = true
 			};
 			var identityResult = await userManager.CreateAsync(identityUser, request.Password);
 
@@ -71,6 +73,23 @@ namespace MS.Blog.Web.Controllers
 				};
 
 			};
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Confirm(Guid id)
+		{
+			var user = await userManager.FindByIdAsync(id.ToString());
+			if (user != null)
+			{
+				user.EmailConfirmed = true;
+
+				var identityResult = await userManager.UpdateAsync(user);
+				if (identityResult is not null && identityResult.Succeeded)
+				{
+					return RedirectToAction("List", "AdminUsers");
+				}
+			}
 			return View();
 		}
 

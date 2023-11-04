@@ -28,6 +28,7 @@
 						<th>Username</th>
 						<th>Email</th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,6 +38,17 @@
 							<td>@user.Id</td>
 							<td>@user.Username</td>
 							<td>@user.EmailAddress</td>
+							<td>
+								@if (!user.EmailConfirmed)
+								{
+									<form method="post"
+										  asp-controller="AdminUsers"
+										  asp-action="Confirm"
+										  asp-route-id="@user.Id">
+										<button class="btn btn-success" type="submit">Confirm</button>
+									</form>
+								}
+							</td>
 							<td>
 								<form method="post"
 									  asp-controller="AdminUsers"

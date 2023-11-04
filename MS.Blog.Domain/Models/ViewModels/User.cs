@@ -7,5 +7,6 @@
 		public string Username { get; set; }
 
 		public string EmailAddress { get; set; }
+		public bool EmailConfirmed { get; set; }
 	}
 }
