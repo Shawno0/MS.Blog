@@ -247,3 +247,4 @@ paket-files/
 .idea/
 *.sln.iml
 /MS.Blog.Web/appsettings.json
+/MS.Blog.Web/appsettings.Development.json

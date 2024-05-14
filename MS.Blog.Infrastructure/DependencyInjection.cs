@@ -26,7 +26,9 @@ namespace MS.Blog.Infrastructure
 
             services.Configure<IdentityOptions>(options =>
             {
-                //Default settings
+
+                options.SignIn.RequireConfirmedEmail = true;
+
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+/ ";
 
                 options.Password.RequireDigit = true;

@@ -23,15 +23,18 @@ namespace MS.Blog.Web.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			//getting all blogs
-			var blogPosts = await blogPostRepository.GetAllAsync();
-			//get all tags
+			var posts = await blogPostRepository.GetAllAsync();
+
+			if (User.Identity == null || User?.Identity?.IsAuthenticated == false)
+			{
+				posts = posts.Where(p => p.Visible == true);
+			}
+
 			var tags = await tagRepository.GetAllAsync();
 
-			//combine 2 models in one. 
 			var model = new HomeViewModel
 			{
-				BlogPosts = blogPosts,
+				BlogPosts = posts,
 				Tags = tags
 			};
 
